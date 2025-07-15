@@ -10,52 +10,74 @@ public class Player2 : MonoBehaviour
     private int jumpCount;
     private Rigidbody2D rb;
 
-    public Transform player1;              // Tham chiếu tới Player1
+    public Transform player1;
     public float attackRange = 2.5f;
-    public float attackForce = 30f;
+    public float attackForce = 7f;
 
-    void Start()
+    private bool isKnocked = false;
+    private float knockbackTimer = 0f;
+    public float knockbackDuration = 0.3f;
+
+    private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.freezeRotation = true;
         jumpCount = maxJumps;
     }
 
-    void Update()
+    private void Update()
     {
-        // Di chuyển ← →
         float move = 0f;
-        if (Input.GetKey(KeyCode.LeftArrow)) move = -1f;
-        else if (Input.GetKey(KeyCode.RightArrow)) move = 1f;
-
-        rb.velocity = new Vector2(move * moveSpeed, rb.velocity.y);
-
-        // Nhảy
-        if (Input.GetKeyDown(KeyCode.UpArrow) && jumpCount > 0)
+        if (!isKnocked)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            jumpCount--;
+            if (Input.GetKey(KeyCode.LeftArrow)) move = -1f;
+            else if (Input.GetKey(KeyCode.RightArrow)) move = 1f;
+
+            if (move != 0)
+                rb.velocity = new Vector2(move * moveSpeed, rb.velocity.y);
+            else
+                rb.velocity = new Vector2(0f, rb.velocity.y);
+
+            if (Input.GetKeyDown(KeyCode.UpArrow) && jumpCount > 0)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                jumpCount--;
+            }
+        }
+        else
+        {
+            knockbackTimer -= Time.deltaTime;
+            if (knockbackTimer <= 0f)
+            {
+                isKnocked = false;
+            }
         }
 
-        // Tấn công khi nhấn K
         if (Input.GetKeyDown(KeyCode.K))
         {
-            Debug.Log("K pressed");
-            if (player1 == null)
-            {
-                Debug.Log("player1 is null");
-            }
             float distance = Vector2.Distance(transform.position, player1.position);
             if (distance <= attackRange)
             {
                 Rigidbody2D enemyRb = player1.GetComponent<Rigidbody2D>();
+                Player1 enemyScript = player1.GetComponent<Player1>();
+
                 Vector2 pushDir = (player1.position - transform.position).normalized;
-                enemyRb.velocity = new Vector2(pushDir.x * attackForce, enemyRb.velocity.y);
+                Vector2 arcPushDir = (new Vector2(pushDir.x, 0.3f)).normalized; // thấp hơn để không bị dựng đứng
+
+                enemyRb.velocity = Vector2.zero; // reset vận tốc
+                enemyRb.AddForce(arcPushDir * attackForce, ForceMode2D.Impulse);
+                enemyScript.ApplyKnockback(knockbackDuration);
             }
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    public void ApplyKnockback(float duration)
+    {
+        isKnocked = true;
+        knockbackTimer = duration;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.contacts[0].normal.y > 0.5f)
         {
@@ -63,4 +85,11 @@ public class Player2 : MonoBehaviour
         }
     }
 }
+
+
+
+
+
+
+
 
