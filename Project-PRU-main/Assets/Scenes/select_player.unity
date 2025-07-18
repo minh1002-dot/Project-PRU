@@ -1723,13 +1723,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characters:
   - characterName: kyo
-    characterSprite: {fileID: 21300000, guid: 552482c6f8ac27e4ca7792ef0c21aa6a, type: 3}
+    characterSprites: {fileID: 21300000, guid: 552482c6f8ac27e4ca7792ef0c21aa6a, type: 3}
   - characterName: kyo
-    characterSprite: {fileID: 21300000, guid: 552482c6f8ac27e4ca7792ef0c21aa6a, type: 3}
+    characterSprites: {fileID: 21300000, guid: 552482c6f8ac27e4ca7792ef0c21aa6a, type: 3}
   - characterName: knight
-    characterSprite: {fileID: 21300000, guid: 1bbb98bbe21162745a5914e05350bfb9, type: 3}
+    characterSprites: {fileID: 21300000, guid: 1bbb98bbe21162745a5914e05350bfb9, type: 3}
   - characterName: knight
-    characterSprite: {fileID: 21300000, guid: 1bbb98bbe21162745a5914e05350bfb9, type: 3}
+    characterSprites: {fileID: 21300000, guid: 1bbb98bbe21162745a5914e05350bfb9, type: 3}
   characterImageP1: {fileID: 296995273}
   characterNameP1: {fileID: 1740159201}
   characterImageP2: {fileID: 189961799}

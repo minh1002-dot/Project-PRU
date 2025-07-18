@@ -15,6 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/select_map.unity
     guid: 1a2a80a91a53b5140b455a8ce353c700
   - enabled: 1
-    path: Assets/hieu.unity
-    guid: cf718d25a5298ff419ba172e3ebfb0f9
+    path: Assets/Scenes/Gameplay 1.unity
+    guid: bcacca265677b3940852d130e2549144
   m_configObjects: {}

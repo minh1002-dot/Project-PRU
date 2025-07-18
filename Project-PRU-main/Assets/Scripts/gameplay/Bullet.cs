@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public float damage = 20f;
+    void OnTriggerEnter2D(Collider2D col)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (col.CompareTag("Player"))
+        {
+            col.GetComponent<Health>()?.TakeDamage(damage);
+            Destroy(gameObject);
+        }
     }
 }

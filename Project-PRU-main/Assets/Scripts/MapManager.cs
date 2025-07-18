@@ -41,6 +41,6 @@ public class MapManager : MonoBehaviour
     public void StartGame()
     {
         PlayerPrefs.SetInt("SelectedMap", currentIndex); // lưu map
-        SceneManager.LoadScene("hieu"); 
+        SceneManager.LoadScene("Gameplay 1"); 
     }
 }

@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class CharacterData
 {
     public string characterName;
-    public Sprite characterSprite;
+    public Sprite characterSprites;         
 }
 
 public class Select_Characters : MonoBehaviour
@@ -61,10 +61,10 @@ public class Select_Characters : MonoBehaviour
 
     void UpdateUI()
     {
-        characterImageP1.sprite = characters[indexP1].characterSprite;
+        characterImageP1.sprite = characters[indexP1].characterSprites;
         characterNameP1.text = characters[indexP1].characterName;
 
-        characterImageP2.sprite = characters[indexP2].characterSprite;
+        characterImageP2.sprite = characters[indexP2].characterSprites;
         characterNameP2.text = characters[indexP2].characterName;
     }
 
