@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using static UnityEditor.Timeline.TimelinePlaybackControls;
 using UnityEngine.UIElements;
 using TMPro;
@@ -19,13 +20,17 @@ public class GameManager : MonoBehaviour
     public Transform spawnPointP1;
     public Transform spawnPointP2;
 
+    [Header("UI")]
+    public UnityEngine.UI.Slider healthSliderP1;
+    public UnityEngine.UI.Slider healthSliderP2;
+
     void Awake()
     {
         // Singleton pattern
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Optional: giữ lại khi đổi scene
+            DontDestroyOnLoad(gameObject); // Optional
         }
         else
         {
@@ -45,7 +50,7 @@ public class GameManager : MonoBehaviour
         currentMap = Instantiate(mapPrefabs[mapIndex], Vector3.zero, Quaternion.identity);
         yield return null;
 
-        // 2. Spawn player
+        // 2. Spawn players
         int p1Index = PlayerPrefs.GetInt("P1Char", 0);
         int p2Index = PlayerPrefs.GetInt("P2Char", 1);
 
@@ -54,7 +59,12 @@ public class GameManager : MonoBehaviour
 
         player1.tag = "Player1";
         player2.tag = "Player2";
+
+        // Gán slider health sau khi spawn
+        Health health1 = player1.GetComponent<Health>();
+        Health health2 = player2.GetComponent<Health>();
+
+        if (health1 != null) health1.healthBar = healthSliderP1;
+        if (health2 != null) health2.healthBar = healthSliderP2;
     }
-
-
 }
