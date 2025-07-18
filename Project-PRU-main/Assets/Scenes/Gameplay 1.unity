@@ -147,7 +147,7 @@ Transform:
   m_GameObject: {fileID: 38738567}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.32, y: 0.28, z: -0.047518127}
+  m_LocalPosition: {x: 7.32, y: 0.28, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -454,13 +454,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapPrefabs:
-  - {fileID: 6545019946192606175, guid: c4a6d5efbbb35b14eba9230333f9bf62, type: 3}
+  - {fileID: 4823026921911380662, guid: cd41c38814f582e439552507d70ea140, type: 3}
   - {fileID: 3656279236252028938, guid: f34cad92fd5b6d5409541c5771f1d09a, type: 3}
   characterPrefabs:
-  - {fileID: 8748582953252789671, guid: bdb3b0f3f7e33c64e94be93d8f858488, type: 3}
+  - {fileID: 5783897602261555598, guid: 4e11d11cd14f70743b6571636ac0d2e8, type: 3}
   - {fileID: 892398242772118996, guid: ba49b24610a75aa47a759606e4897cfc, type: 3}
   spawnPointP1: {fileID: 1636347276}
   spawnPointP2: {fileID: 38738568}
+  healthSliderP1: {fileID: 1209679877}
+  healthSliderP2: {fileID: 358074496}
 --- !u!1 &590348981
 GameObject:
   m_ObjectHideFlags: 0
@@ -666,7 +668,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &1365494494
 RectTransform:
@@ -825,7 +827,7 @@ Transform:
   m_GameObject: {fileID: 1636347275}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.41, y: -0.23, z: -0.047518127}
+  m_LocalPosition: {x: -8.41, y: -0.23, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

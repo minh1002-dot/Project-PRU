@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerControler : MonoBehaviour
 {
     public float moveSpeed = 5f;
-    public float jumpForce = 12f;
+    public float jumpForce = 6f;
     private Rigidbody2D rb;
     public Transform weaponHolder;
     public Weapon currentWeapon;
@@ -21,7 +21,8 @@ public class PlayerControler : MonoBehaviour
 
         if (gameObject.tag == "Player1")
         {
-            move = Input.GetAxisRaw("Horizontal"); // A/D hoặc phím mũi tên trái/phải nếu cấu hình lại
+            if (Input.GetKey(KeyCode.A)) move = -1;
+            else if (Input.GetKey(KeyCode.D)) move = 1;
             if (Input.GetKeyDown(KeyCode.W))
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
@@ -32,7 +33,7 @@ public class PlayerControler : MonoBehaviour
                 currentWeapon.Fire();
             }
         }
-        else if (gameObject.tag == "Player2")
+        if (gameObject.tag == "Player2")
         {
             // Dùng Left/Right Arrow
             if (Input.GetKey(KeyCode.LeftArrow)) move = -1;
