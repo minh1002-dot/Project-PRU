@@ -19,7 +19,7 @@ public class Weapon : MonoBehaviour
         if (other.CompareTag("Player1") || other.CompareTag("Player2"))
         {
             PlayerControler player = other.GetComponent<PlayerControler>();
-            if (player != null)
+            if (player != null && player.currentWeapon == null)
             {
                 player.PickUpWeapon(gameObject);
                 isPickedUp = true;
@@ -34,17 +34,16 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public void Fire()
+    public void Fire(float direction)
     {
-        if (firePoint == null || bulletPrefab == null) return;
+        if (bulletPrefab == null || firePoint == null || direction == 0) return;
 
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         if (rb != null)
         {
-            // Xác định hướng bắn dựa theo hướng của player
-            float direction = owner.transform.localScale.x > 0 ? 1f : -1f;
-            rb.velocity = new Vector2(direction * fireForce, 0f);
+            float dir = direction > 0 ? 1f : -1f;
+            rb.velocity = new Vector2(dir * fireForce, 0f);
         }
     }
 }
