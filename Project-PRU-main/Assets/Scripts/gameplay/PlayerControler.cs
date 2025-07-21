@@ -133,7 +133,7 @@ public class PlayerControler : MonoBehaviour
             }
 
             currentWeapon.owner = null;
-            Destroy(currentWeapon.gameObject, 20f);
+            Destroy(currentWeapon.gameObject, 2f);
             currentWeapon = null;
         }
     }

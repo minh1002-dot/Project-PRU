@@ -10,7 +10,7 @@ public class Weapon : MonoBehaviour
 
     [HideInInspector] public PlayerControler owner;
 
-    private bool isPickedUp = false;
+    public bool isPickedUp = false;
 
     void OnTriggerEnter2D(Collider2D other)
     {
