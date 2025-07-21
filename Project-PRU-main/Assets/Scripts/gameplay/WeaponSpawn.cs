@@ -41,18 +41,29 @@ public class WeaponSpawn : MonoBehaviour
         StartCoroutine(WaitForPickupOrTimeout(weapon));
     }
 
+    public void NotifyWeaponPickedUp()
+    {
+        currentWeaponCount = Mathf.Max(0, currentWeaponCount - 1);
+    }
+
     IEnumerator WaitForPickupOrTimeout(GameObject weapon)
     {
-        float timeout = 20f; // auto remove nếu không nhặt sau 20s
+        float timeout = 20f;
         float elapsed = 0f;
+
+        Weapon weaponScript = weapon.GetComponent<Weapon>();
 
         while (elapsed < timeout && weapon != null && weapon.activeInHierarchy)
         {
+            // Nếu weapon đã được nhặt thì dừng luôn
+            if (weaponScript != null && weaponScript.isPickedUp)
+                yield break;
+
             elapsed += Time.deltaTime;
             yield return null;
         }
 
-        if (weapon != null)
+        if (weapon != null && !weaponScript.isPickedUp)
         {
             Destroy(weapon);
             currentWeaponCount--;

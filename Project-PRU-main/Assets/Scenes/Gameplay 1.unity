@@ -355,7 +355,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 363.00064, y: 201.50027}
+  m_AnchoredPosition: {x: 353, y: 203}
   m_SizeDelta: {x: 160.38, y: 21.88}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &358074496
@@ -529,9 +529,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponPrefabs:
-  - {fileID: 5534723140522711016, guid: 77bcc3067997b0a408efce62102de884, type: 3}
-  - {fileID: 5459669692452905044, guid: fb5f38ace3597894b9836b37c9f1cd25, type: 3}
-  - {fileID: 8777805453592601285, guid: 5537c061fcb32fd49b13eb350efad170, type: 3}
+  - {fileID: 3603459227392893567, guid: 7e22c1df96b0d5740b8b539093279f85, type: 3}
+  - {fileID: 1822702804065455760, guid: e76ad7d22932b0c4493ba886c49a7d86, type: 3}
+  - {fileID: 8672639794207098659, guid: 2d114776b0cc1994eb25f06f7a4e3b23, type: 3}
   spawnPoints:
   - {fileID: 1184732686}
   - {fileID: 748342876}
@@ -608,7 +608,7 @@ Transform:
   m_GameObject: {fileID: 1184732685}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.05, y: -0.25, z: 2}
+  m_LocalPosition: {x: 6.19, y: -0.51, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -771,7 +771,7 @@ Canvas:
   m_GameObject: {fileID: 1365494490}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 203202757}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -783,7 +783,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1365494494
 RectTransform:
