@@ -32,7 +32,7 @@ public class PlayerControler : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.G) && currentWeapon != null)
                 currentWeapon.Fire(facingDirection);
 
-            if (Input.GetKeyDown(KeyCode.O))
+            if (Input.GetKeyDown(KeyCode.T))
                 DropWeapon();
         }
 
@@ -57,6 +57,11 @@ public class PlayerControler : MonoBehaviour
             facingDirection = move > 0 ? 1f : -1f;
             transform.localScale = new Vector3(facingDirection, 1f, 1f);
         }
+        else
+        {
+            // Giữ hướng cũ nếu đứng yên
+            facingDirection = transform.localScale.x;
+        }
     }
 
     void FixedUpdate()
@@ -74,18 +79,37 @@ public class PlayerControler : MonoBehaviour
 
     public void PickUpWeapon(GameObject weaponObj)
     {
-        if (currentWeapon != null) return; 
+        if (currentWeapon != null) return;
 
         weaponObj.transform.SetParent(weaponHolder);
         weaponObj.transform.localPosition = Vector3.zero;
+
+        // Reset rotation để tránh lật úp/lệch
+        weaponObj.transform.localRotation = Quaternion.identity;
+
         currentWeapon = weaponObj.GetComponent<Weapon>();
         currentWeapon.owner = this;
 
-        // Tắt physics để dính tay
+        // Disable physics
         Collider2D col = currentWeapon.GetComponent<Collider2D>();
         if (col) col.enabled = false;
+
         Rigidbody2D rbW = currentWeapon.GetComponent<Rigidbody2D>();
         if (rbW) rbW.simulated = false;
+
+        // Lật sprite vũ khí theo hướng của player
+        SpriteRenderer weaponSprite = weaponObj.GetComponent<SpriteRenderer>();
+        if (weaponSprite != null)
+        {
+            weaponSprite.flipX = (facingDirection < 0);
+        }
+        else
+        {
+            // Nếu không dùng flipX thì chỉnh scale
+            Vector3 scale = weaponObj.transform.localScale;
+            scale.x = Mathf.Abs(scale.x) * Mathf.Sign(facingDirection);
+            weaponObj.transform.localScale = scale;
+        }
     }
 
     public void DropWeapon()
@@ -100,11 +124,16 @@ public class PlayerControler : MonoBehaviour
             Rigidbody2D rbW = currentWeapon.GetComponent<Rigidbody2D>();
             if (rbW != null)
             {
+                rbW.bodyType = RigidbodyType2D.Dynamic;
                 rbW.simulated = true;
-                rbW.velocity = new Vector2(move * 2f, 2f); // Ném theo hướng đang di chuyển
+                rbW.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+
+                float throwDir = move != 0 ? move : transform.localScale.x;
+                rbW.velocity = new Vector2(throwDir * 2f, 2f);
             }
 
             currentWeapon.owner = null;
+            Destroy(currentWeapon.gameObject, 20f);
             currentWeapon = null;
         }
     }

@@ -40,10 +40,18 @@ public class Weapon : MonoBehaviour
 
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+
         if (rb != null)
         {
             float dir = direction > 0 ? 1f : -1f;
             rb.velocity = new Vector2(dir * fireForce, 0f);
+        }
+
+        // Gán người bắn vào viên đạn
+        Bullet bulletScript = bullet.GetComponent<Bullet>();
+        if (bulletScript != null)
+        {
+            bulletScript.owner = owner;
         }
     }
 }
